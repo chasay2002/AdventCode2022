@@ -1,1 +1,1 @@
-# AdventCode2022
+# AdventCode
