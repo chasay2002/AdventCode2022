@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -1061,24 +1060,24 @@ func main() {
 }
 
 func SumLine(line string) int {
-	println("------", line)
+	// println("------", line)
 	ret := 0
 
 	matches := r.FindAllString(line, -1)
 	indices := r.FindAllStringIndex(line, -1)
 	if len(matches) > 0 {
-		println(matches[0], "#", matches[len(matches)-1])
-		num1 := matchToInt(matches[0])
+		// println(matches[0], "#", matches[len(matches)-1])
+		num1 := strMatchToInt(matches[0])
 		ret += num1 * 10
-		fmt.Printf("%v\n", indices)
-		line = replaceAtIndex(line, []rune(strconv.Itoa(matchToInt(matches[len(matches)-1])))[0], indices[len(indices)-1][0])
-		println(line)
+		// fmt.Printf("%v\n", indices)
+		line = replaceAtIndex(line, []rune(strconv.Itoa(strMatchToInt(matches[len(matches)-1])))[0], indices[len(indices)-1][0])
+		// println(line)
 		matches = r.FindAllString(line, -1)
-		println(matches[0], "##", matches[len(matches)-1])
-		ret += matchToInt(matches[len(matches)-1])
+		// println(matches[0], "##", matches[len(matches)-1])
+		ret += strMatchToInt(matches[len(matches)-1])
 	}
 
-	println(ret)
+	// println(ret)
 	return ret
 }
 
@@ -1089,7 +1088,7 @@ func replaceAtIndex(str string, replacement rune, index int) string {
 	return str[:index] + string(replacement) + str[index+1:]
 }
 
-func matchToInt(val string) int {
+func strMatchToInt(val string) int {
 	if num, err := strconv.Atoi(val); err == nil {
 		// println("- ", num)
 		return int(num)
